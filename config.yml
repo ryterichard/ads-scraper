@@ -1,0 +1,271 @@
+sites:
+  - publisher: "The Washington Post"
+    searchQuery: 'site:washingtonpost.com/creativegroup'
+    data:
+      class:
+        'sponsor': ['sponsor']
+    attribute:
+      xpath:
+        'date':
+          '//meta[@property="article:published_time"]': 'content'
+
+  - publisher: "CNN"
+    searchQuery: 'site:sponsorcontent.cnn.com'
+    data:
+      class:
+        'sponsor': ['cnn-header__content-by']
+    attribute:
+      xpath:
+        'date':
+          '//meta[@property="article:modified_time"]': 'content'
+          
+  - publisher: "CNN"
+    searchQuery: 'site:advertisementfeature.cnn.com'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/(?P<date>[\w\d-]*)\/.*$'
+    data:
+      class:
+        'sponsor': ['cnn-sponsor']
+
+  - publisher: "CNBC"
+    searchQuery: 'site:cnbc.com/advertorial'
+    data:
+      class:
+        'sponsor': ['native-asset-creator']
+    attribute:
+      xpath:
+        'date':
+          '//meta[@itemprop="dateCreated"]': 'content'
+
+  - publisher: "Politico"
+    searchQuery: 'site:politico.com/sponsor-content'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/sponsor-content\/(?P<date>[0-9\/]*)\/.*$'
+    data:
+      class:
+        'sponsor': ['byline',"secondary-sponsored","story-sponsorship"]
+        'date': ['timestamp']
+
+  - publisher: "Associated Press"
+    searchQuery: 'site:apnews.com/sponsored'
+    data:
+      class:
+        'title': ['headline']
+        'sponsor': ['signature']
+        'article': ['Article']
+
+  - publisher: "USA Today"
+    searchQuery: 'site:usatoday.com/story/sponsor-story'
+    data:
+      class:
+        'sponsor': ['gnt_ar_by','gnt_ar_pb', 'gnt_ar_lbl']
+        'article': ['gnt_ar_b']
+    attribute:
+      class:
+        'date':
+          'gnt_ar_dt': 'aria-label'
+
+  - publisher: "The New York Times"
+    searchQuery: 'site:nytimes.com/paidpost'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/.*\/(?P<sponsor>.*)\/.*$'
+    data:
+      tag:
+        'article': ['article']
+    attribute:
+      xpath:
+        'date':
+          '//meta[@name="pdate"]': 'content'
+
+  - publisher: "The Washington Post"
+    searchQuery: 'site:washingtonpost.com/brand-studio'
+    data:
+      class:
+        'sponsor': ['sponsor']
+
+  - publisher: "The Wall Street Journal"
+    searchQuery: 'site:partners.wsj.com'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/(?P<sponsor>[\w\d-]*)\/.*$'
+    attribute:
+      xpath:
+        'date':
+          '//meta[@name="publishdate"]': 'content'
+  
+  - publisher: "Business Insider"
+    searchQuery: 'site:businessinsider.com/sc'
+    data:
+      class:
+        'sponsor': ['gnt_ar_by','gnt_ar_pb', 'gnt_ar_lbl']
+        'article': ['gnt_ar_b']
+    attribute:
+      xpath:
+        'date':
+          '//meta[@name="publishdate"]': 'content'
+  
+  - publisher: 'Newsweek'
+    searchQuery: 'site:newsweek.com/sponsored'
+    data:
+      class:
+        'date': ['byline']
+  - publisher: 'Newsweek'
+    searchQuery: 'site:newsweek.com/amplify'
+    data:
+      class:
+        'date': ['byline']
+
+  - publisher: 'Reuters'
+    searchQuery: 'site:reuters.com/brandfeatures'
+    data:
+      class:
+        'sponsor': ['header-center']
+  - publisher: 'Reuters'
+    searchQuery: 'site:reuters.com/article/sponsored'
+    attribute:
+      xpath:
+        'date':
+          '//meta[@property="og:article:published_time"]': 'content'
+
+  - searchQuery: 'site:theatlantic.com/sponsored'
+    publisher: 'The Atlantic'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/sponsored\/(?P<sponsor>[\w\d-]*)\/.*$'
+
+  - searchQuery: 'site:ksl.com/article "This story is sponsored by"'
+    publisher: 'KSL'
+    data:
+      class:
+        'sponsor': ['author']
+
+  - searchQuery: 'site:creative.dailymail.co.uk'
+    publisher: 'Daily Mail'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/(?P<sponsor>[^\/]*)\/.*$'
+
+  - searchQuery: 'site:theguardian.com ("paid for by" OR "supported by") AND "about this content"'
+    publisher: 'The Guardian'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/.*\/(?P<date>(\d*\/\w*\/\d*))\/.*$'
+
+  - searchQuery: 'site:huffpost.com/entry ("SPONSORED BY" OR "PRESENTED BY")'
+    publisher: 'HuffPost'
+    data:
+      class:
+        'sponsor': ['sp-promo-header']
+        'date': ['timestamp']
+
+  - searchQuery: 'site:bbc.com/storyworks'
+    publisher: "BBC News"
+
+  - searchQuery: 'site:nypost.com/dispatch'
+    publisher: 'New York Post'
+
+  - searchQuery: 'site:studios.nypost.com'
+    publisher: 'New York Post'
+
+  - publisher: 'Forbes'
+    searchQuery: 'site:forbes.com/sites "Paid Program" AND "Brand Contributor"'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/sites\/(?P<sponsor>[\w\d-]*)\/((?P<date>[\d\/]*)\/)?.*$'
+
+  - searchQuery: 'site:sponsored.bloomberg.com'
+    publisher: 'Bloomberg'
+
+  - searchQuery: 'site:theverge.com/ad'
+    publisher: 'The Verge'
+
+  - searchQuery: 'site:thehill.com/sponsored-content'
+  
+  - searchQuery: 'site:sfgate.com/market/article'
+
+  - publisher: "U.S. News & World Report"
+    searchQuery: 'site:usnewsbrandfuse.com'
+    url: '^https?:\/\/[A-Za-z0-9:.]*\/(?P<sponsor>[\w\d-]*)\/.*$'
+    data:
+      class:
+        'sponsor': ['adcontentbytext','adcontentby']
+
+  - searchQuery: 'site:theverge.com/ad'
+
+  - searchQuery: 'site:nbcnews.com/paid-content'
+
+excel:
+  columns:
+    - 'publisher'
+    - 'keyword'
+    - 'url'
+    - 'title'
+    - 'sponsor'
+    - 'date'
+    - 'article'
+
+searchTerms:
+  - 'acid'
+  - 'acidification'
+  - 'atmosphere'
+  - 'atmospheric'
+  - 'anthropogenic'
+  - 'antartic'
+  - 'bio'
+  - 'biofuel'
+  - 'biogenic'
+  - 'biodiversity'
+  - 'carbon'
+  - 'chlorofluorocarbons'
+  - 'climate'
+  - 'coral'
+  - 'cryosphere'
+  - 'decarbon'
+  - 'deforestaion'
+  - 'desertification'
+  - 'earth'
+  - 'eco'
+  - 'ecology'
+  - 'ecosystem'
+  - 'emission'
+  - 'energy'
+  - 'environment'
+  - 'electric'
+  - 'fluorinated'
+  - 'fuel'
+  - 'glacial'
+  - 'glacier'
+  - 'global'
+  - 'green'
+  - 'greenhouse'
+  - 'geosphere'
+  - 'gas'
+  - 'habitat'
+  - 'hydrocarbons'
+  - 'infrared'
+  - 'inundation'
+  - 'ice'
+  - 'methane'
+  - 'natural'
+  - 'nitrous'
+  - 'organic'
+  - 'oil'
+  - 'oxidize'
+  - 'ozone'
+  - 'petroleum'
+  - 'pollution'
+  - 'photosynthesis'
+  - 'power'
+  - 'radiation'
+  - 'recycle'
+  - 'renew'
+  - 'renewable'
+  - 'reforestation'
+  - '"sea level"'
+  - 'soil'
+  - 'stratosphere'
+  - 'sulfur'
+  - 'sulfate'
+  - 'solar'
+  - 'sustainable'
+  - 'sustainability'
+  - 'temperature'
+  - 'thermal'
+  - 'tillage'
+  - 'tropospheric'
+  - 'tundra'
+  - 'ultraviolet'
+  - 'volatile'
+  - 'vegetation'
+  - 'waste'
+  - 'water'
+  - 'warming'
+  - 'weather'
+  - 'CO2'
